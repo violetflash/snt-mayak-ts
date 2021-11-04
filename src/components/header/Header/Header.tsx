@@ -4,7 +4,7 @@ import {Logo} from "../../Logo/Logo";
 import {ColorModeSwitcher} from "../ColorModeSwitcher";
 import {User} from "../User/User";
 import {Contacts} from "../Contacts/Contacts";
-import {Burger} from "../../ui/Burger/Burger";
+import { DrawerMenu } from "../../drawer";
 
 export const Header = () => {
     const [isLargerThan768] = useMediaQuery("(min-width: 768px)")
@@ -23,7 +23,7 @@ export const Header = () => {
                       <User/>
                     </Flex>
                     }
-                    {isLessThan480 && <Burger isOpened={false}/>}
+                    {isLessThan480 && <DrawerMenu/>}
                 </Flex>
             </Container>
         </Box>

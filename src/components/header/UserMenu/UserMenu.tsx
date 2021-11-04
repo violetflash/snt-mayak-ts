@@ -1,9 +1,29 @@
 import React from 'react';
 import {ChevronDownIcon, SettingsIcon} from "@chakra-ui/icons";
-import {Button, Text, Menu, MenuButton, MenuItem, MenuList, MenuDivider, Portal, MenuGroup} from "@chakra-ui/react";
+import {
+    Button,
+    Text,
+    Menu,
+    MenuButton,
+    MenuItem,
+    MenuList,
+    MenuDivider,
+    Portal,
+    MenuGroup,
+    ComponentWithAs,
+    IconProps
+} from "@chakra-ui/react";
 import { FaPowerOff, FaRegMoneyBillAlt } from "react-icons/fa"
 import { useTheme } from '@chakra-ui/react';
 import {UserAvatar} from "../UserAvatar/UserAvatar";
+import { capitalizeFirst, userMenuLinksData } from "../../../utils/constants";
+
+type userMenuLinkDataType = {
+    id: string,
+    title: string,
+    route: string,
+    icon:  ComponentWithAs<"svg", IconProps>
+}
 
 const menuBtnSettings = {
     // as: Button,
@@ -40,8 +60,9 @@ export const UserMenu = () => {
                             <Text casing="uppercase" p="10px 15px" textAlign="right">Alexander Grobovsky</Text>
                             <MenuDivider />
                             <MenuGroup title="Меню">
-                                <MenuItem {...menuBtnSettings} tabIndex={1} autoFocus={true}>Настройки аккаунта</MenuItem>
-                                <MenuItem {...menuBtnSettings} tabIndex={0} icon={<FaRegMoneyBillAlt/>}>Мои объявления</MenuItem>
+                                {userMenuLinksData.map((link ): userMenuLinkDataType => (
+                                    <MenuItem id={link.id} {...menuBtnSettings} icon={link.icon}>{capitalizeFirst(link.title)}</MenuItem>
+                                ))}
                             </MenuGroup>
                             <MenuDivider />
                             <MenuItem

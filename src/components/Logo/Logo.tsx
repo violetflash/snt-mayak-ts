@@ -6,7 +6,7 @@ export const Logo = () => {
     const theme = useTheme();
     const mode = useColorMode();
 
-    const windowColor = mode.colorMode === "dark" ? theme.colors.yellow[400] : theme.colors.gray[200];
+    const windowColor = mode.colorMode === "dark" ? theme.colors.yellow[400] : theme.colors.gray[400];
 
     const MAYAK_LOGO =
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 251.17 92.59">
@@ -30,16 +30,16 @@ export const Logo = () => {
             <Flex
                 as="figcaption"
                 align="flex-end"
-                mt="-3px"
+                mt="-1px"
                 position="relative"
                 _before={{
                     content: '""',
                     position: "absolute",
                     width: "100%",
                     height: "3px",
-                    bottom: "-5px",
+                    bottom: "-6px",
                     borderRadius: "0 0 4px 4px",
-                    bg: "gray.400",
+                    bg: "gray.500",
                     opacity: "0.6",
                 }}
             >

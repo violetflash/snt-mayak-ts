@@ -51,6 +51,7 @@ export const UserMenu = () => {
                         // display={['flex', 'flex', 'none', 'none']}
                         leftIcon={<ChevronDownIcon transition="all 0.3s" transform={isOpen ? "scaleY(-1)" : 'none'} />}
                         variant="pure"
+                        p="0 0 0 10px"
                         _focus={{boxShadow: "none"}}
                     >
                         <UserAvatar />
@@ -60,8 +61,8 @@ export const UserMenu = () => {
                             <Text casing="uppercase" p="10px 15px" textAlign="right">Alexander Grobovsky</Text>
                             <MenuDivider />
                             <MenuGroup title="Меню">
-                                {userMenuLinksData.map((link ): userMenuLinkDataType => (
-                                    <MenuItem id={link.id} {...menuBtnSettings} icon={link.icon}>{capitalizeFirst(link.title)}</MenuItem>
+                                {userMenuLinksData.map(link  => (
+                                    <MenuItem key={link.id} {...menuBtnSettings} icon={link.icon}>{capitalizeFirst(link.title)}</MenuItem>
                                 ))}
                             </MenuGroup>
                             <MenuDivider />

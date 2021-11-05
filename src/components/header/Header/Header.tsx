@@ -9,7 +9,7 @@ import { DrawerMenu } from "../../drawer";
 export const Header = () => {
     const [isLargerThan768] = useMediaQuery("(min-width: 768px)")
     const [isLargerThan480] = useMediaQuery("(min-width: 480px)")
-    const [isLessThan480] = useMediaQuery("(max-width: 480px)")
+    const [isLessThan480] = useMediaQuery("(max-width: 479px)")
 
     return (
         <Box as="header" py="10px" className="Header">

@@ -1,9 +1,8 @@
 import React from 'react';
-import {Box, Button, Container, Flex, ListItem} from "@chakra-ui/react";
+import { Box, Button, Container, Flex } from "@chakra-ui/react";
 import {capitalizeFirst, navData} from "../../utils/constants";
 
 export const Nav = () => {
-
     const navLinks = navData.map(link => (
         <Button
             key={link.id}
@@ -19,9 +18,11 @@ export const Nav = () => {
     ))
 
     return (
-        <Box as="nav" className="Nav" bgGradient="linear(to-r, cyan.200, green.300, cyan.200)" py="5px">
+        <Box as="nav" className="Nav" bgGradient="linear(to-r, cyan.200, green.300, cyan.200)">
             <Container maxW="container.xl">
-                <Flex justify={["space-between", "space-between", "space-around", "space-around", "space-around"]} className="Nav-flex-wrapper">
+                <Flex
+                    justify={["space-between", "space-between", "space-around", "space-around", "space-around"]}
+                    className="Nav-flex-wrapper">
                     {navLinks}
                 </Flex>
             </Container>

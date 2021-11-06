@@ -20,4 +20,6 @@ export const capitalizeFirst = (str: string) => {
 
 export const capitalizeAll = (str: string) => {
     return str.split(' ').map((word) => capitalizeFirst(word)).join(' ');
-}
+};
+
+export const getFirstWord = (str : string) => str.split(' ')[0];

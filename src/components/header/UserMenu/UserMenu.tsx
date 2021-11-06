@@ -10,23 +10,23 @@ import {
     MenuDivider,
     Portal,
     MenuGroup,
-    ComponentWithAs,
-    IconProps
+    Flex
 } from "@chakra-ui/react";
-import { FaPowerOff, FaRegMoneyBillAlt } from "react-icons/fa"
-import { useTheme } from '@chakra-ui/react';
-import {UserAvatar} from "../UserAvatar/UserAvatar";
-import { capitalizeFirst, userMenuLinksData } from "../../../utils/constants";
 
-type userMenuLinkDataType = {
-    id: string,
-    title: string,
-    route: string,
-    icon:  ComponentWithAs<"svg", IconProps>
-}
+import {UserAvatar} from "../UserAvatar/UserAvatar";
+import {capitalizeFirst, userMenuLinksData} from "../../../utils/constants";
+import {Logout} from '../../Logout/Logout';
+import { UserName } from '../../ui/UserName/UserName';
+
+
+// type userMenuLinkDataType = {
+//     id: string,
+//     title: string,
+//     route: string,
+//     icon:  ComponentWithAs<"svg", IconProps>
+// }
 
 const menuBtnSettings = {
-    // as: Button,
     justifyContent: "flex-start",
     variant: "ghost",
     borderRadius: "none",
@@ -35,56 +35,49 @@ const menuBtnSettings = {
 }
 
 export const UserMenu = () => {
-    const theme = useTheme();
 
-    const exitHandle = () => {
-        console.log('Выход');
-    };
-
+    const menuLinks = userMenuLinksData.map(link => (
+        <MenuItem
+            key={link.id}
+            {...menuBtnSettings}
+            icon={link.icon}
+        >
+            {capitalizeFirst(link.title)}
+        </MenuItem>
+    ));
 
     return (
-        <Menu>
-            {({ isOpen }) => (
+        <Menu >
+            {({isOpen}) => (
                 <>
                     <MenuButton
                         as={Button}
                         // display={['flex', 'flex', 'none', 'none']}
-                        leftIcon={<ChevronDownIcon transition="all 0.3s" transform={isOpen ? "scaleY(-1)" : 'none'} />}
+                        leftIcon={<ChevronDownIcon transition="all 0.3s" transform={isOpen ? "scaleY(-1)" : 'none'}/>}
                         variant="pure"
-                        p="0 0 0 10px"
+                        p="0 0 0 20px"
+                        height="65px"
                         _focus={{boxShadow: "none"}}
                     >
-                        <UserAvatar />
+                        <UserAvatar/>
                     </MenuButton>
                     <Portal>
                         <MenuList minWidth="400px">
-                            <Text casing="uppercase" p="10px 15px" textAlign="right">Alexander Grobovsky</Text>
-                            <MenuDivider />
+                            <Flex p="10px 15px" justify="flex-end" >
+                                <UserName/>
+                            </Flex>
+                            <MenuDivider/>
                             <MenuGroup title="Меню">
-                                {userMenuLinksData.map(link  => (
-                                    <MenuItem key={link.id} {...menuBtnSettings} icon={link.icon}>{capitalizeFirst(link.title)}</MenuItem>
-                                ))}
+                                {menuLinks}
                             </MenuGroup>
-                            <MenuDivider />
-                            <MenuItem
-                                // as={Button}
-                                ml="auto"
-                                width="auto"
-                                fontWeight="normal"
-                                borderRadius="6px"
-                                variant="ghost"
-                                icon={<FaPowerOff color={theme.colors.cyan[200]} />}
-                                onClick={exitHandle}
-                            >
-                                Выйти
-                            </MenuItem>
+                            <MenuDivider/>
+                            <Flex justify="flex-end" p="0 0.4rem">
+                                <Logout/>
+                            </Flex>
                         </MenuList>
                     </Portal>
                 </>
-                )
-
-
-            }
+            )}
         </Menu>
     )
 };

@@ -1,27 +1,23 @@
 import React from 'react';
-import {Flex, WrapItem, Button, Text} from "@chakra-ui/react"
+import {Flex, WrapItem, Box} from "@chakra-ui/react"
 import { UserMenu } from '../UserMenu/UserMenu';
+import {useSelector} from "react-redux";
+import { LoginButton } from '../../LoginButton/LoginButton';
+import {UserName} from "../../ui/UserName/UserName";
 
 export const User = () => {
-    const loggedUser = true;
+    const { logged } = useSelector(state => state.user);
 
-    const login = <Button
-        variant="outline"
-        _hover={{ bg: "blue.200", color: "black" }}
-        _active={{ bg: "blue.100" }}
-        _expanded={{ bg: "blue.200", color: "black" }}
-        _focus={{ boxShadow: "outline" }}
-    >
-        Войти</Button>
-
-    const logged =
+    const loggedUser =
         <WrapItem>
             <Flex align="center">
-                <Text display={['none', 'none', 'block', 'block']}>Александр</Text>
+                <Box display={['none', 'none', 'block', 'block']}>
+                    <UserName first/>
+                </Box>
                 <UserMenu/>
             </Flex>
         </WrapItem>
     ;
 
-    return loggedUser ? logged : login;
+    return logged ? loggedUser : <LoginButton/>;
 };

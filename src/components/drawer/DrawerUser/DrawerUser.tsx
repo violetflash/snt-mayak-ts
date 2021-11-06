@@ -1,8 +1,10 @@
 import React from 'react';
-import {Box, Button, Divider, Flex, Heading, IconButton} from "@chakra-ui/react";
+import {Box, Flex, IconButton} from "@chakra-ui/react";
 import {UserAvatar} from "../../header";
 import {userMenuLinksData} from "../../../utils/constants";
 import {ColorModeSwitcher} from "../../header/ColorModeSwitcher";
+import {Logout} from "../../Logout/Logout";
+import {UserName} from "../../ui/UserName/UserName";
 
 type propsType = {
     onClose: Function
@@ -10,14 +12,10 @@ type propsType = {
 
 const DrawerUser = ({ onClose }: propsType) => {
 
+
     const handleClose = () => {
         onClose();
     };
-
-    const logoutHandle = () => {
-        onClose();
-        console.log('logout');
-    }
 
     const userLinks = userMenuLinksData.map(link => (
         <IconButton
@@ -25,7 +23,7 @@ const DrawerUser = ({ onClose }: propsType) => {
             aria-label={link.title}
             icon={link.icon}
             to={link.route}
-            variant="outline"
+            variant="pure"
             mr="15px"
             onClick={handleClose}
         />
@@ -33,17 +31,21 @@ const DrawerUser = ({ onClose }: propsType) => {
 
     return (
         <Box>
-            <Flex align="flex-end" p="16px 0">
+            <Flex align="flex-end" p="30px 0  16px 0">
                 <UserAvatar/>
-                <Heading size="md" ml="15px">Александр Гробовский</Heading>
+                <Box ml="15px">
+                    <UserName/>
+                </Box>
+
+                {/*<Heading size="md">Константинов Константин Константинович</Heading>*/}
             </Flex>
-            <Divider/>
+            {/*<Divider/>*/}
             <Flex justify="space-between" pt="16px">
                 <Box>
-                    <ColorModeSwitcher mr="15px"/>
                     {userLinks}
                 </Box>
-                <Button colorScheme="teal" onClick={logoutHandle}>Выйти</Button>
+                <ColorModeSwitcher m="0 30px 0 auto"/>
+                <Logout/>
             </Flex>
         </Box>
     );

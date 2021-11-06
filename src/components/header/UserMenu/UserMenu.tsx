@@ -64,7 +64,7 @@ export const UserMenu = () => {
                     <Portal>
                         <MenuList minWidth="400px">
                             <Flex p="10px 15px" justify="flex-end" >
-                                <UserName/>
+                                <UserName i/>
                             </Flex>
                             <MenuDivider/>
                             <MenuGroup title="Меню">

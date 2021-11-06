@@ -5,6 +5,7 @@ import {ColorModeSwitcher} from "../ColorModeSwitcher";
 import {User} from "../User/User";
 import {Contacts} from "../Contacts/Contacts";
 import { DrawerMenu } from "../../drawer";
+import {PageContainer} from "../../ui";
 
 export const Header = () => {
     const [isLargerThan768] = useMediaQuery("(min-width: 768px)")
@@ -13,7 +14,7 @@ export const Header = () => {
 
     return (
         <Box as="header" py="10px" className="Header">
-            <Container maxW="container.xl">
+            <PageContainer>
                 <Flex justify="space-between" align="center" className="Header-content">
                     <Logo/>
                     {isLargerThan768 && <Contacts/>}
@@ -25,7 +26,7 @@ export const Header = () => {
                     }
                     {isLessThan480 && <DrawerMenu/>}
                 </Flex>
-            </Container>
+            </PageContainer>
         </Box>
     )
 };

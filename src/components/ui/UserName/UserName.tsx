@@ -4,13 +4,14 @@ import { Text } from "@chakra-ui/react";
 import {getFirstWord} from "../../../utils/constants";
 
 type propsType = {
-    first?: boolean
+    first?: boolean,
+    i?: boolean
 }
 
-export const UserName = ({ first } : propsType) => {
+export const UserName = ({ first, i } : propsType) => {
     const { name } = useSelector(state => state.user);
     return (
-        <Text fontSize="md">
+        <Text fontSize="md" as={i ? 'i' : 'span'}>
             {first ? getFirstWord(name) : name}
         </Text>
     )

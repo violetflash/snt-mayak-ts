@@ -1,15 +1,23 @@
 import React from 'react';
-import { Box, Button, Container, Flex } from "@chakra-ui/react";
+import { Box, Button, Container, Flex, useColorMode } from "@chakra-ui/react";
+import {Link as RouterLink, useLocation} from "react-router-dom";
 import {capitalizeFirst, navData} from "../../utils/constants";
 
 export const Nav = () => {
+    const { colorMode } = useColorMode();
+    const { pathname } = useLocation();
+    const linkBg = colorMode === "light" ? "white" : "gray.800";
+    console.log(colorMode);
     const navLinks = navData.map(link => (
         <Button
+            as={RouterLink}
             key={link.id}
             to={link.route}
             variant="pure"
             p={["0", "0", "0 16px", "0 16px"]}
-            color="black"
+            borderRadius="0"
+            // color={colorMode === "light" ? "black" : "white"}
+            bg={pathname === link.route ? linkBg : "inherit"}
             fontFamily="Cuprum"
             fontWeight="500"
         >

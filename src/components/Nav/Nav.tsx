@@ -1,7 +1,7 @@
 import React from 'react';
-import { Box, Button, Container, Flex, useColorMode } from "@chakra-ui/react";
+import {Box, Button, Container, Flex, useColorMode, useMediaQuery} from "@chakra-ui/react";
 import {Link as RouterLink, useLocation} from "react-router-dom";
-import { motion } from 'framer-motion';
+import {AnimatePresence, motion} from 'framer-motion';
 import {capitalizeFirst, navData} from "../../utils/constants";
 
 const MotionBox = motion(Box);
@@ -18,6 +18,8 @@ const variant = {
 };
 
 export const Nav = () => {
+    const [isLessThan480] = useMediaQuery("(max-width: 479px)")
+
     const { colorMode } = useColorMode();
     const { pathname } = useLocation();
     const linkBg = colorMode === "light" ? "white" : "gray.800";
@@ -65,8 +67,42 @@ export const Nav = () => {
                 variants={variant}
             />
         </MotionFlex>
+    ));
 
-    ))
+    const navLinksMobile = navData.map(el => (
+        <MotionListItem
+            variants={itemVariants}
+            key={el.id}
+            transition={{staggerChildren: 1.3}}
+        >
+            <Button
+                onClick={handleClose}
+                w="100%"
+                mb="20px"
+                p="0"
+                variant="pure"
+            >
+                {capitalizeFirst(el.title)}
+            </Button>
+        </MotionListItem>
+    ));
+
+    const mobile =
+        <AnimatePresence>
+            <MotionList
+                initial="closed"
+                animate="open"
+                exit="closed"
+                variants={listVariants}
+                listStyleType="none"
+                p="0"
+                m="30px 0 0 0"
+            >
+                {navLinksMobile}
+            </MotionList>
+        </AnimatePresence>
+    ;
+
 
     return (
         <Box as="nav" className="Nav" bgGradient="linear(to-r, cyan.200, green.300, cyan.200)">

@@ -1,5 +1,5 @@
 import React from "react";
-import {Box, Container, Flex, useMediaQuery} from "@chakra-ui/react";
+import {Box, Flex, useMediaQuery} from "@chakra-ui/react";
 import {Logo} from "../../Logo/Logo";
 import {ColorModeSwitcher} from "../ColorModeSwitcher";
 import {User} from "../User/User";

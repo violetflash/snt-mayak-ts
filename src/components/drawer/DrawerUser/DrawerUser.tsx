@@ -44,7 +44,6 @@ const DrawerUser = ({ onClose }: propsType) => {
                 <Box>
                     {userLinks}
                 </Box>
-                <ColorModeSwitcher m="0 30px 0 auto"/>
                 <Logout/>
             </Flex>
         </Box>

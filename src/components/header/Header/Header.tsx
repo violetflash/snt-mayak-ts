@@ -24,7 +24,12 @@ export const Header = () => {
                       <User/>
                     </Flex>
                     }
-                    {isLessThan480 && <DrawerMenu/>}
+                    {isLessThan480 &&
+                    <>
+                      <ColorModeSwitcher mr="60px" className="ColorSwitcher"/>
+                      <DrawerMenu/>
+                    </>
+                    }
                 </Flex>
             </PageContainer>
         </Box>

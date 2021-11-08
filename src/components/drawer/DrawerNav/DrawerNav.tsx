@@ -1,5 +1,6 @@
 import React from 'react';
 import {Button, ListItem, UnorderedList} from "@chakra-ui/react";
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 import {AnimatePresence, motion } from 'framer-motion';
 import {capitalizeFirst, navData} from '../../../utils/constants';
 
@@ -41,6 +42,7 @@ const itemVariants = {
 
 
 export const DrawerNav = ({ onClose } : propsType) => {
+    const { path } = useLocation();
 
     const handleClose = () => {
         onClose();
@@ -53,6 +55,8 @@ export const DrawerNav = ({ onClose } : propsType) => {
             transition={{staggerChildren: 1.3}}
         >
             <Button
+                as={RouterLink}
+                to={el.route}
                 onClick={handleClose}
                 w="100%"
                 mb="20px"
@@ -79,5 +83,4 @@ export const DrawerNav = ({ onClose } : propsType) => {
             </MotionList>
         </AnimatePresence>
     );
-
 };

@@ -10,7 +10,7 @@ import { Header } from "../header";
 import { theme } from "../../theme";
 import {Nav} from "../Nav/Nav";
 import {Footer} from "../Footer/Footer";
-import {Main, Documents, Contacts, About} from "../../pages";
+import {Main, Documents, Contacts, About, UserSettings, Questions} from "../../pages";
 
 
 
@@ -28,6 +28,8 @@ export const App = () => {
                         <Route path="/about" element={<About/>}/>
                         <Route path="/documents" element={<Documents/>}/>
                         <Route path="/contacts" element={<Contacts/>}/>
+                        <Route path="/account-settings" element={<UserSettings/>}/>
+                        <Route path="/questions" element={<Questions/>}/>
                     </Routes>
                 </Box>
                 <Footer/>

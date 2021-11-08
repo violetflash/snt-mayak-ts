@@ -49,6 +49,9 @@
     "@fontsource/cuprum": "^4.5.0",
     "@fontsource/literata": "^4.5.0",
     "@fontsource/roboto": "^4.5.1",
-    "framer-motion": "^4.1.17"
+    "axios": "^0.24.0",
+    "framer-motion": "^4.1.17",
+    "nanoid": "^3.1.30",
+    "react-loading-skeleton": "^3.0.1"
   }
 }

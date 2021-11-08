@@ -7,15 +7,17 @@ import {
     DrawerBody,
     DrawerHeader,
     DrawerFooter,
-    Drawer, Divider, IconButton,
+    Drawer, Divider, IconButton, Box,
 } from '@chakra-ui/react';
 
 import { useSelector } from "react-redux";
 
-import {DrawerNav} from "../DrawerNav/DrawerNav";
 import DrawerUser from "../DrawerUser/DrawerUser";
 import { HamburgerIcon } from '@chakra-ui/icons';
 import { LoginButton } from '../../LoginButton/LoginButton';
+import { NavMobile } from '../../Nav/NavMobile';
+import {LogoSvg} from "../../Logo/LogoSVG";
+
 
 
 export const DrawerMenu = () => {
@@ -45,11 +47,13 @@ export const DrawerMenu = () => {
                     </DrawerHeader>
                     <Divider/>
                     <DrawerBody>
-                        <DrawerNav onClose={onClose}/>
+                        <Box mt="30px" width="100%" height="80px">
+                            <LogoSvg opacity="0.5"/>
+                        </Box>
+                        <NavMobile onClose={onClose}/>
                     </DrawerBody>
-
                     <DrawerFooter>
-
+                        {/*<Logo/>*/}
                     </DrawerFooter>
                 </DrawerContent>
             </Drawer>

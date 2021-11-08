@@ -1,14 +1,19 @@
 import React from 'react';
-import {Box, Center} from "@chakra-ui/react";
+import {Box, Center, Heading} from "@chakra-ui/react";
 import {PageContainer} from "../components/ui";
+import {Announces} from "../components/Announces/Announces";
 
 export const Main = () => {
     return (
-        <Box bg="red.100">
+        <Box >
             <PageContainer>
-                <Center>
-                    Главная страница
+                <Center m="30px 0 30px">
+                    <Heading>
+                        Объявления
+                    </Heading>
                 </Center>
+
+                <Announces/>
             </PageContainer>
         </Box>
     );

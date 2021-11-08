@@ -1,8 +1,8 @@
 import React from 'react';
+import {Link as RouterLink, useLocation} from 'react-router-dom';
 import {Box, Flex, IconButton} from "@chakra-ui/react";
 import {UserAvatar} from "../../header";
 import {userMenuLinksData} from "../../../utils/constants";
-import {ColorModeSwitcher} from "../../header/ColorModeSwitcher";
 import {Logout} from "../../Logout/Logout";
 import {UserName} from "../../ui/UserName/UserName";
 
@@ -11,7 +11,7 @@ type propsType = {
 };
 
 const DrawerUser = ({ onClose }: propsType) => {
-
+    const {pathname} = useLocation();
 
     const handleClose = () => {
         onClose();
@@ -19,12 +19,15 @@ const DrawerUser = ({ onClose }: propsType) => {
 
     const userLinks = userMenuLinksData.map(link => (
         <IconButton
+            as={RouterLink}
             key={link.id}
             aria-label={link.title}
             icon={link.icon}
             to={link.route}
             variant="pure"
             mr="15px"
+            bg={pathname === link.route ? "orange.300" : "transparent"}
+            color={pathname === link.route && "black"}
             onClick={handleClose}
         />
     ))
@@ -36,10 +39,7 @@ const DrawerUser = ({ onClose }: propsType) => {
                 <Box ml="15px">
                     <UserName/>
                 </Box>
-
-                {/*<Heading size="md">Константинов Константин Константинович</Heading>*/}
             </Flex>
-            {/*<Divider/>*/}
             <Flex justify="space-between" pt="16px">
                 <Box>
                     {userLinks}

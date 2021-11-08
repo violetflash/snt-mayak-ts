@@ -11,7 +11,7 @@ export const navData = [
 
 export const userMenuLinksData = [
     {id: 'settings', title: "Настройки аккаунта", route: "/account-settings", icon: <SettingsIcon/>},
-    {id: 'appeal', title: "Оставить обращение", route: "/appeal", icon: <ChatIcon/>},
+    {id: 'appeal', title: "Задать вопрос", route: "/questions", icon: <ChatIcon/>},
 ]
 
 export const capitalizeFirst = (str: string) => {

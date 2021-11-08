@@ -8,11 +8,11 @@ const MotionBox = motion(Box);
 const MotionFlex = motion(Flex);
 
 const variant = {
-    hover: {
+    open: {
         scaleX: 1,
         borderRadius: 0
     },
-    rest: {
+    close: {
         scaleX: 0,
     }
 };
@@ -21,8 +21,7 @@ export const Nav = () => {
     const { colorMode } = useColorMode();
     const { pathname } = useLocation();
     const linkBg = colorMode === "light" ? "white" : "gray.800";
-    const linkColor = colorMode === "light" ? "gray.800" : "white";
-    console.log(colorMode);
+    const linkColor = colorMode === "light" ? "orange.700" : "yellow.500";
 
     const navLinks = navData.map(link => (
         <MotionFlex
@@ -34,7 +33,7 @@ export const Nav = () => {
             height="40px"
             initial="rest"
             // whileHover="hover"
-            animate={pathname === link.route ? "hover" : 'rest'}
+            animate={pathname === link.route ? "open" : 'close'}
             // animate="rest"
         >
             <Button
@@ -50,6 +49,7 @@ export const Nav = () => {
                 // bg={pathname === link.route ? linkBg : "inherit"}
                 fontFamily="Cuprum"
                 fontWeight="500"
+                fontSize="lg"
                 zIndex="1"
 
             >

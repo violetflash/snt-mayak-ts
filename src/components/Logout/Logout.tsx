@@ -22,7 +22,7 @@ export const Logout = () => {
                 fontWeight="normal"
                 borderRadius="6px"
                 variant="ghost"
-                leftIcon={<FaPowerOff color={theme.colors.orange[400]} />}
+                leftIcon={<FaPowerOff color={theme.colors.cyan[100]} />}
                 onClick={onOpen}
             >
                 Выйти

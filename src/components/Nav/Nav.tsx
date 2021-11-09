@@ -1,7 +1,7 @@
 import React from 'react';
 import {Box, Button, Container, Flex, useColorMode} from "@chakra-ui/react";
 import {Link as RouterLink, useLocation} from "react-router-dom";
-import {motion} from 'framer-motion';
+import {AnimatePresence, motion} from 'framer-motion';
 import {capitalizeFirst, navData} from "../../utils/constants";
 
 const MotionBox = motion(Box);
@@ -38,7 +38,6 @@ export const Nav = () => {
         >
             <Button
                 as={RouterLink}
-                _focus={{ boxShadow: "none"}}
                 to={link.route}
                 variant="pure"
                 // p={["0", "0", "0 16px", "0 16px"]}
@@ -70,13 +69,16 @@ export const Nav = () => {
     return (
         <Box as="nav" className="Nav" bgGradient="linear(to-r, cyan.200, green.300, cyan.200)">
             <Container maxW="container.xl">
-                <Flex
+                <AnimatePresence initial={false}>
+                    <Flex
 
-                    // justify={["space-between", "space-between", "space-around", "space-around", "space-around"]}
-                    justify="space-around"
-                    className="Nav-flex-wrapper">
-                    {navLinks}
-                </Flex>
+                        // justify={["space-between", "space-between", "space-around", "space-around", "space-around"]}
+                        justify="space-around"
+                        className="Nav-flex-wrapper">
+                        {navLinks}
+                    </Flex>
+                </AnimatePresence>
+
             </Container>
         </Box>
     )

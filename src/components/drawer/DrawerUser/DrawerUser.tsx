@@ -27,17 +27,17 @@ const DrawerUser = ({ onClose }: propsType) => {
             variant="pure"
             mr="15px"
             bg={pathname === link.route ? "orange.300" : "transparent"}
-            color={pathname === link.route && "black"}
+            color={pathname === link.route ? "black" : "inherit"}
             onClick={handleClose}
         />
     ))
 
     return (
         <Box>
-            <Flex align="flex-end" p="30px 0  16px 0">
+            <Flex align="center" p="30px 0  16px 0">
                 <UserAvatar/>
                 <Box ml="15px">
-                    <UserName/>
+                    <UserName first/>
                 </Box>
             </Flex>
             <Flex justify="space-between" pt="16px">

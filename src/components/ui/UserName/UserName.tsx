@@ -5,13 +5,18 @@ import {getFirstWord} from "../../../utils/constants";
 
 type propsType = {
     first?: boolean,
-    i?: boolean
+    i?: boolean,
+    p?: string
 }
 
-export const UserName = ({ first, i } : propsType) => {
+export const UserName = ({ first, i, p } : propsType) => {
     const { name } = useSelector(state => state.user);
     return (
-        <Text fontSize="md" as={i ? 'i' : 'span'}>
+        <Text
+            fontSize="md"
+            as={i ? 'i' : 'span'}
+            p={p}
+        >
             {first ? getFirstWord(name) : name}
         </Text>
     )

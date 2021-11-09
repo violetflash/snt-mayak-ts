@@ -42,7 +42,7 @@ export const UserMenu = () => {
             to={link.route}
             key={link.id}
             {...menuBtnSettings}
-            color={pathname === link.route ? "orange.500" : "inherit"}
+            color={pathname === link.route ? "orange.400" : "inherit"}
             icon={link.icon}
         >
             {capitalizeFirst(link.title)}
@@ -60,7 +60,6 @@ export const UserMenu = () => {
                         variant="pure"
                         p="0 0 0 20px"
                         height="65px"
-                        _focus={{boxShadow: "none"}}
                     >
                         <UserAvatar/>
                     </MenuButton>

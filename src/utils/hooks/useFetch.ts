@@ -22,7 +22,7 @@ export const useFetch = (url : string) => {
                 })
                 .catch(err => {
                     setLoading(false)
-                    setError('An error occurred. Awkward..')
+                    setError(`Произошла ошибка. Описание ошибки: ${err.message}`);
                 })
         }, 1000);
 

@@ -6,3 +6,8 @@ body {
 #root {
     height: 100%;
 }
+
+.js-focus-visible :focus:not([data-focus-visible-added]) {
+    outline: none;
+    box-shadow: none;
+}

@@ -1,6 +1,7 @@
 import React from 'react';
+import {useNavigate} from 'react-router-dom';
 import {motion} from 'framer-motion';
-import {Badge, Flex, Heading, Text, VStack, useMediaQuery} from "@chakra-ui/react";
+import {Badge, Flex, Heading, Text, VStack, useMediaQuery, Box, Button, Link} from "@chakra-ui/react";
 
 const infoVariants = {
     responsiveInitial: {
@@ -65,9 +66,10 @@ const descVariants = {
 };
 
 const MotionVStack = motion(VStack);
-const MotionText = motion(Text);
+const MotionBox = motion(Box);
 
 type propsType = {
+    id: string,
     date?: string,
     time?: string,
     title: string,
@@ -76,7 +78,8 @@ type propsType = {
     activeAnnounce: number
 };
 
-export const AnnounceCard = ({date, time, title, desc, index, activeAnnounce }: propsType) => {
+export const AnnounceCard = ({ id, date, time, title, desc, index, activeAnnounce }: propsType) => {
+    const navigate = useNavigate();
     const [isLargerThan992] = useMediaQuery("(min-width: 992px)")
 
     if (index !== +activeAnnounce) return null;
@@ -119,17 +122,31 @@ export const AnnounceCard = ({date, time, title, desc, index, activeAnnounce }: 
                 </Heading>
                 {/*<AnimatedText text={title}/>*/}
             </MotionVStack>
-            <MotionText
+            <MotionBox
                 flex="1"
                 variants={descVariants}
-                sx={{textIndent: "40px"}}
-                textAlign="justify"
-                p={{lg: "0 15px 0 0", md: "0 15px", base: "0 10px"}}
                 initial={isLargerThan992 ? "initial" : "responsiveInitial"}
                 animate={isLargerThan992 ? "enter" : "responsiveEnter"}
             >
-                {desc}
-            </MotionText>
+                <Text
+                    mb="15px"
+                    sx={{textIndent: "40px"}}
+                    textAlign="justify"
+                    p={{lg: "0 15px 0 0", md: "0 15px", base: "0 10px"}}
+                >
+                    {desc}
+                </Text>
+                <Flex justify="flex-end">
+                    <Button
+                        as={Link}
+                        onClick={() => navigate(`/announces/${id}`)}
+                    >
+                        Открыть
+                    </Button>
+                </Flex>
+
+            </MotionBox>
+
         </Flex>
     )
 };

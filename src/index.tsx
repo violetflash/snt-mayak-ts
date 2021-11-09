@@ -8,6 +8,7 @@ import * as serviceWorker from "./serviceWorker"
 import {Provider} from "react-redux";
 import {store} from "./redux";
 import './index.css';
+import 'focus-visible/dist/focus-visible';
 
 ReactDOM.render(
   <React.StrictMode>

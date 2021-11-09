@@ -4,14 +4,11 @@ import "@fontsource/cuprum/500.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/literata/700.css";
 import { useMediaQuery } from "@chakra-ui/react";
-import {Route, Routes} from "react-router-dom";
-
 import { Header } from "../header";
 import { theme } from "../../theme";
 import {Nav} from "../Nav/Nav";
 import {Footer} from "../Footer/Footer";
-import {Main, Documents, Contacts, About, UserSettings, Questions} from "../../pages";
-
+import {AppRoutes} from "../AppRoutes/AppRoutes";
 
 
 export const App = () => {
@@ -23,14 +20,7 @@ export const App = () => {
                 <Header/>
                 {isLargerThan480 && <Nav/>}
                 <Box className="App-content-flex-wrapper"  flex="1 0 auto" w="100%">
-                    <Routes>
-                        <Route path="/" element={<Main/>}/>
-                        <Route path="/about" element={<About/>}/>
-                        <Route path="/documents" element={<Documents/>}/>
-                        <Route path="/contacts" element={<Contacts/>}/>
-                        <Route path="/account-settings" element={<UserSettings/>}/>
-                        <Route path="/questions" element={<Questions/>}/>
-                    </Routes>
+                    <AppRoutes/>
                 </Box>
                 <Footer/>
             </Flex>

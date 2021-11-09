@@ -1,5 +1,5 @@
 import React from "react";
-import {Box, Flex, useMediaQuery} from "@chakra-ui/react";
+import {Box, Divider, Flex, useMediaQuery} from "@chakra-ui/react";
 import {Logo} from "../../Logo/Logo";
 import {ColorModeSwitcher} from "../ColorModeSwitcher";
 import {User} from "../User/User";
@@ -13,7 +13,7 @@ export const Header = () => {
     const [isLessThan480] = useMediaQuery("(max-width: 479px)")
 
     return (
-        <Box as="header" py="10px" className="Header">
+        <Box as="header" pt="10px" mb="10px" className="Header">
             <PageContainer>
                 <Flex justify="space-between" align="center" className="Header-content">
                     <Logo/>
@@ -32,6 +32,7 @@ export const Header = () => {
                     }
                 </Flex>
             </PageContainer>
+            {isLessThan480 && <Divider pt="15px"/>}
         </Box>
     )
 };

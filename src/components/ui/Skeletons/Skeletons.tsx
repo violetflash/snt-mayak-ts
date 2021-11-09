@@ -40,7 +40,7 @@ export const Skeletons = ({type}: propsType) => {
                     <Box
                         flex="1"
                     >
-                        <Skeleton width="100%" height="20px" mt={2}/>
+                        <Skeleton width="90%" height="20px" mt={2} ml="auto"/>
                         <Skeleton width="100%" height="20px" mt={2}/>
                         <Skeleton width="100%" height="20px" mt={2}/>
                         <Skeleton width="100%" height="20px" mt={2}/>

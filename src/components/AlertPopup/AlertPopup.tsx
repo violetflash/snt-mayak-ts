@@ -8,7 +8,7 @@ type propsType = {
     confirmText?: string,
     declineText?: string,
     isOpen: boolean,
-    onClose: React.MouseEventHandler<Element, MouseEvent>
+    onClose: React.MouseEventHandler<Element, MouseEvent>,
     confirmFunc: Function
 }
 

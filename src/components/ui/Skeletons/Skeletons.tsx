@@ -1,6 +1,6 @@
 import React from 'react';
 import 'react-loading-skeleton/dist/skeleton.css';
-import {Box, Flex, Skeleton} from "@chakra-ui/react";
+import {Box, Center, Flex, Skeleton} from "@chakra-ui/react";
 
 type propsType = {
     type: string
@@ -9,26 +9,45 @@ type propsType = {
 export const Skeletons = ({type}: propsType) => {
     if (type === 'announce') {
         return (
-            <Flex justify="space-between">
-                <Box
-                    flex="0 1 35%"
+            <>
+                <Center mb="30px">
+                    <Box><Skeleton width="40px" height="40px"/></Box>
+                    <Box ml="20px"><Skeleton width="40px" height="40px"/></Box>
+                </Center>
+                <Flex
+                    justify="space-between"
+                    direction={['column', 'column', 'column', 'row', 'row']}
                 >
-                    <Box mb="20px">
-                        <Skeleton width="160px" height="25px"/>
+                    <Box
+                        flex="0 1 37%"
+                    >
+                        <Box mb="15px">
+                            <Skeleton
+                                width="160px"
+                                height="30px"
+                                margin={{lg: "0", md: "0 0 0 auto", base: "0 0 0 auto"}}
+                            />
+                        </Box>
+                        <Box>
+                            <Skeleton
+                                width="290px"
+                                height="40px"
+
+                                margin={{lg: "0", md: "0 auto 20px", base: "0 auto 20px"}}
+                            />
+                        </Box>
                     </Box>
-                    <Box>
-                        <Skeleton width="290px" height="40px"/>
+                    <Box
+                        flex="1"
+                    >
+                        <Skeleton width="100%" height="20px" mt={2}/>
+                        <Skeleton width="100%" height="20px" mt={2}/>
+                        <Skeleton width="100%" height="20px" mt={2}/>
+                        <Skeleton width="100%" height="20px" mt={2}/>
                     </Box>
-                </Box>
-                <Box
-                    flex="1"
-                >
-                    <Skeleton width="100%" height="20px" mt={2}/>
-                    <Skeleton width="100%" height="20px" mt={2}/>
-                    <Skeleton width="100%" height="20px" mt={2}/>
-                    <Skeleton width="100%" height="20px" mt={2}/>
-                </Box>
-            </Flex>
+                </Flex>
+            </>
+
         )
     }
 

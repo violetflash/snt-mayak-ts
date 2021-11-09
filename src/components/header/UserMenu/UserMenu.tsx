@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link as RouterLink, useLocation} from 'react-router-dom';
 import {ChevronDownIcon, SettingsIcon} from "@chakra-ui/icons";
 import {
     Button,
@@ -34,11 +35,14 @@ const menuBtnSettings = {
 }
 
 export const UserMenu = () => {
-
+    const { pathname } = useLocation();
     const menuLinks = userMenuLinksData.map(link => (
         <MenuItem
+            as={RouterLink}
+            to={link.route}
             key={link.id}
             {...menuBtnSettings}
+            color={pathname === link.route ? "orange.500" : "inherit"}
             icon={link.icon}
         >
             {capitalizeFirst(link.title)}

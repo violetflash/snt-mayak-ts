@@ -15,7 +15,7 @@ export const Logout = () => {
     const handleLogout = () => {
         console.log('bye bye!');
         dispatch(logout());
-        navigate("/");
+        navigate("/" );
     };
 
     return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Badge, Flex, Text, VStack} from "@chakra-ui/react";
+import {Badge, Flex, VStack} from "@chakra-ui/react";
 import {UserAvatar} from "../../header";
 import {UserName} from "../../ui/UserName/UserName";
 

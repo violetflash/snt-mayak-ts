@@ -18,5 +18,5 @@ export const UserSettings = () => {
                 </Flex>
             </PageContainer>
         </Box>
-    )
+    );
 };

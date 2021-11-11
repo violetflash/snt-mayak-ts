@@ -5,3 +5,5 @@ export * from './Contacts';
 export * from './UserSettings';
 export * from './Questions';
 export * from './AnnounceIdPage';
+export * from './NotFound';
+export * from './Admin';

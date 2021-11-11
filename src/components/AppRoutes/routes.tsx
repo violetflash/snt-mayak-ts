@@ -1,13 +1,13 @@
-import {About, AnnounceIdPage, Contacts, Documents, Main, Questions, UserSettings} from "../../pages";
+import {About, AnnounceIdPage, Contacts, Documents, Main, NotFound, Questions, UserSettings} from "../../pages";
 import React from "react";
 
 export const routes = [
-    {path: "/", element: <Main/>},
     {path: "/about", element: <About/>},
     {path: "/documents", element: <Documents/>},
     {path: "/contacts", element: <Contacts/>},
     {path: "/questions", element: <Questions/>},
     {path: "/announces/:id", element: <AnnounceIdPage/>},
+    {path: "/*", element: <NotFound/>},
 ];
 
 export const authRoutes = [

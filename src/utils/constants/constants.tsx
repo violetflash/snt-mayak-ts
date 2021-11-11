@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChatIcon, SettingsIcon } from "@chakra-ui/icons";
+import { ChatIcon, SettingsIcon, UnlockIcon } from "@chakra-ui/icons";
 
 
 export const navData = [
@@ -12,6 +12,7 @@ export const navData = [
 export const userMenuLinksData = [
     {id: 'settings', title: "Настройки аккаунта", route: "/account-settings", icon: <SettingsIcon/>},
     {id: 'appeal', title: "Задать вопрос", route: "/questions", icon: <ChatIcon/>},
+    {id: 'admin', title: "админка", route: "/admin", icon: <UnlockIcon/>},
 ]
 
 export const capitalizeFirst = (str: string) => {

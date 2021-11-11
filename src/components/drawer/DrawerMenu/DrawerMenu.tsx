@@ -10,13 +10,12 @@ import {
     Drawer, Divider, IconButton, Box,
 } from '@chakra-ui/react';
 
-import { useSelector } from "react-redux";
-
 import DrawerUser from "../DrawerUser/DrawerUser";
 import { HamburgerIcon } from '@chakra-ui/icons';
 import { LoginButton } from '../../LoginButton/LoginButton';
 import { NavMobile } from '../../Nav/NavMobile';
 import {LogoSvg} from "../../Logo/LogoSVG";
+import { useSelector } from '../../../redux';
 
 
 

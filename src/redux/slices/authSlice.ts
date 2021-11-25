@@ -1,4 +1,4 @@
-import {createSlice, createAsyncThunk, SerializedError, PayloadAction} from "@reduxjs/toolkit";
+import {createSlice, createAsyncThunk, PayloadAction} from "@reduxjs/toolkit";
 
 import {
     getAuth,
@@ -8,18 +8,20 @@ import {
     signInWithEmailAndPassword
 } from "firebase/auth";
 
+import {auth, provider} from "../../utils/services/firebase";
+
 export interface IAuthResponse {
     displayName: string | null;
     email: string | null;
+}
+
+export interface IAuthState  extends IAuthResponse {
     isEmailConfirmed: boolean;
-}
-
-export interface AuthStateI  extends IAuthResponse {
     isLoading?: boolean;
-    error: SerializedError | null;
+    error: string | null;
 }
 
-const initialState: AuthStateI = {
+const initialState: IAuthState = {
     displayName: null,
     email: null,
     isEmailConfirmed: false,
@@ -32,58 +34,66 @@ export interface IUserLoginData {
     password: string;
 }
 
-const provider = new GoogleAuthProvider();
-const auth = getAuth();
 
-export const loginByGoogle = createAsyncThunk<IAuthResponse>(
-    'loginByGoogle',
-    async (req, thunkAPI) => {
+
+export const loginWithGoogle = createAsyncThunk<IAuthResponse>(
+    'loginWithGoogle',
+    async (_, thunkAPI) => {
         try {
             const response = await signInWithPopup(auth, provider);
             const displayName = response.user?.displayName;
             const email = response.user?.email;
-            const isEmailConfirmed = true;
-            return { displayName, email, isEmailConfirmed };
-        } catch (error) {
+            return { displayName, email };
+        } catch (error: any) {
             return thunkAPI.rejectWithValue({ error: error.message })
         }
     }
 );
 
-export const logout = createAsyncThunk(
+export const authLogout = createAsyncThunk(
     'logout',
     async (_, thunkAPI) => {
         try {
             await auth.signOut();
-        }catch(error) {
+        }catch(error: any) {
             return thunkAPI.rejectWithValue({ error: error.message });
         }
     }
 );
 
-export const login = createAsyncThunk(
+export const authLogin = createAsyncThunk(
     'login',
     async (formData: IUserLoginData, thunkAPI) => {
         try {
             const response = await signInWithEmailAndPassword(auth, formData.email, formData.password);
-        } catch (error) {
-            return thunkAPI.rejectWithValue({error: )
+            console.log(response);
+        } catch (error: any) {
+            return thunkAPI.rejectWithValue({error: error.message })
         }
     }
-)
+);
 
 export const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {},
     extraReducers: {
-        [loginByGoogle.fulfilled.type]: (state, action: PayloadAction<PayLoad>) => {
+        [loginWithGoogle.pending.type]: (state) => {
+            state.isLoading = true;
+            state.error = null;
+        },
+        [loginWithGoogle.fulfilled.type]: (state, action: PayloadAction<IAuthResponse>) => {
             state.displayName = action.payload.displayName;
             state.email = action.payload.email;
-            state.authenticated = true;
+            state.isEmailConfirmed = true;
         },
-        [loginByGoogle.rejected.type]: (state, action: PayloadAction<>) => {
-
-        };
+        [loginWithGoogle.rejected.type]: (state, action: PayloadAction<string>) => {
+            state.error = action.payload;
+        },
+        [authLogout.fulfilled.type]: (state) => {
+            state.displayName = initialState.displayName;
+            state.email = initialState.email;
+            state.isEmailConfirmed = initialState.isEmailConfirmed;
+        }
     }
 })

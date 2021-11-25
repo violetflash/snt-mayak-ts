@@ -7,9 +7,12 @@ import "@fontsource/literata/700.css";
 import { theme } from "../../theme";
 
 import {AppRoutes} from "../AppRoutes/AppRoutes";
+import { initializeFirebase } from "../../utils/services/firebase";
+
+
 
 export const App = () => {
-
+    initializeFirebase();
     return (
         <ChakraProvider theme={theme}>
             <AppRoutes/>

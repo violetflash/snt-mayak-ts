@@ -8,11 +8,11 @@ import {RequireAuth} from "../RequireAuth/RequireAuth";
 
 export const AppRoutes = () => {
     const publicRoutes = routes.map((route) => (
-        <Route path={route.path} element={route.element}/>
+        <Route key={route.path} path={route.path} element={route.element}/>
     ));
 
     const privateRoutes = authRoutes.map((route) => (
-        <Route path={route.path} element={<RequireAuth>{route.element}</RequireAuth>}/>
+        <Route key={route.path} path={route.path} element={<RequireAuth>{route.element}</RequireAuth>}/>
     ));
 
     return (

@@ -116,6 +116,7 @@ export const authSlice = createSlice({
         },
         [loginWithGoogle.rejected.type]: (state, action: PayloadAction<string>) => {
             state.error = action.payload;
+            state.isLoading = false;
         },
         [logout.fulfilled.type]: () => initialState
     }

@@ -23,4 +23,8 @@ export const capitalizeAll = (str: string) => {
     return str.split(' ').map((word) => capitalizeFirst(word)).join(' ');
 };
 
-export const getFirstWord = (str : string) => str.split(' ')[0];
+export const getFirstWord = (str : string | null) => {
+    if  (str) {
+        return str.split(' ')[0];
+    }
+}

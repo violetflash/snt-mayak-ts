@@ -12,10 +12,10 @@ export const userSlice = createSlice({
         login: (state) => {
             state.logged = true;
         },
-        logout: (state) => {
+        logoutOld: (state) => {
             state.logged = false;
         },
     }
 });
 
-export const { login, logout } = userSlice.actions;
+export const { login, logoutOld } = userSlice.actions;

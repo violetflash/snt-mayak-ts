@@ -1,7 +1,7 @@
 import React from 'react';
-import {useSelector} from "react-redux";
 import { Text } from "@chakra-ui/react";
 import {getFirstWord} from "../../../utils/constants";
+import {useTypedSelector} from "../../../redux";
 
 type propsType = {
     first?: boolean,
@@ -10,14 +10,14 @@ type propsType = {
 }
 
 export const UserName = ({ first, i, p } : propsType) => {
-    const { name } = useSelector(state => state.user);
+    const { displayName } = useTypedSelector(state => state.auth);
     return (
         <Text
             fontSize="md"
             as={i ? 'i' : 'span'}
             p={p}
         >
-            {first ? getFirstWord(name) : name}
+            {first ? getFirstWord(displayName) : displayName}
         </Text>
     )
 };

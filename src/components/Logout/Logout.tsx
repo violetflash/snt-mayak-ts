@@ -3,12 +3,12 @@ import {Button, useDisclosure, useTheme} from "@chakra-ui/react";
 import { useNavigate } from 'react-router-dom';
 import {AlertPopup} from "../AlertPopup/AlertPopup";
 import { FaPowerOff } from "react-icons/fa";
-import { logout } from '../../redux';
-import {useDispatch} from "react-redux";
+import {logout, useAppDispatch} from '../../redux';
+
 
 export const Logout = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const theme = useTheme();
     const navigate = useNavigate();
 

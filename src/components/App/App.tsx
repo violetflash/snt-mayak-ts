@@ -1,18 +1,17 @@
-import * as React from "react";
+import React, {useEffect} from "react";
 import {ChakraProvider} from "@chakra-ui/react";
 import "@fontsource/cuprum/500.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/literata/700.css";
 
 import { theme } from "../../theme";
-
 import {AppRoutes} from "../AppRoutes/AppRoutes";
-import { initializeFirebase } from "../../utils/services/firebase";
 
-
+import { useAuth } from "../../utils/services/firebase";
 
 export const App = () => {
-    initializeFirebase();
+    const user = useAuth();
+    console.log(user);
     return (
         <ChakraProvider theme={theme}>
             <AppRoutes/>

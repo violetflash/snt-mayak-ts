@@ -4,10 +4,10 @@ import { UserMenu } from '../UserMenu/UserMenu';
 
 import { LoginButton } from '../../LoginButton/LoginButton';
 import {UserName} from "../../ui/UserName/UserName";
-import { useSelector } from '../../../redux';
+import { useTypedSelector } from '../../../redux';
 
 export const User = () => {
-    const { logged } = useSelector(state => state.user);
+    const { isLoggedIn } = useTypedSelector(state => state.auth);
 
     const loggedUser =
         <WrapItem>
@@ -20,5 +20,5 @@ export const User = () => {
         </WrapItem>
     ;
 
-    return logged ? loggedUser : <LoginButton/>;
+    return isLoggedIn ? loggedUser : <LoginButton/>;
 };

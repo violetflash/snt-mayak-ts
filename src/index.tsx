@@ -8,6 +8,8 @@ import {store} from "./redux";
 import './index.css';
 import 'focus-visible/dist/focus-visible';
 
+
+
 ReactDOM.render(
   <React.StrictMode>
     <ColorModeScript />

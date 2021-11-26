@@ -7,27 +7,34 @@ import {
 } from "firebase/auth";
 
 
-import {useEffect, useState} from "react";
-import {useAppDispatch} from "../../../redux";
+import {useEffect} from "react";
+import {useAppDispatch, setUser, IAuthState, setLoading} from "../../../redux";
 
 export const provider = new GoogleAuthProvider();
 export const auth = getAuth();
 
 export const useAuth = () => {
     const dispatch = useAppDispatch();
-    const [currentUser, setCurrentUser] = useState(null);
+    // const [currentUser, setCurrentUser] = useState<IAuthState | null>(null);
 
     useEffect(() => {
-        const observe = onAuthStateChanged(auth, (user: any) => {
-            setCurrentUser(user);
-            // const userData = {
-            //
-            // }
-            // dispatch(setUser(user));
+        const observe = onAuthStateChanged(auth, (user) => {
+            dispatch(setLoading(false));
+            // setCurrentUser(user);
+            if (user) {
+                dispatch(setUser({
+                    displayName: user.displayName,
+                    email: user.email,
+                    avatar: user.photoURL,
+                    isEmailConfirmed: user.emailVerified,
+                    error: null,
+                    isLoading: false,
+                    isLoggedIn: true,
+                }));
+            }
         });
 
         return () => observe();
-    });
+    }, [dispatch]);
 
-    return currentUser;
 };

@@ -3,6 +3,7 @@ import {Button} from "@chakra-ui/react";
 import {login, useAppDispatch, useTypedSelector} from '../../redux';
 import {useLocation, useNavigate,  } from 'react-router-dom';
 import {loginWithGoogle} from "../../redux";
+// import {LoaderSpinner} from "../ui";
 
 export const LoginButton = () => {
     const dispatch = useAppDispatch();
@@ -24,6 +25,7 @@ export const LoginButton = () => {
         <Button
             colorScheme="gray"
             isLoading={isLoading}
+            // spinner={<LoaderSpinner/>}
             loadingText="Войти"
             variant="outline"
             _hover={{ bg: "blue.200", color: "black" }}

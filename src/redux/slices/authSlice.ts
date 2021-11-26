@@ -2,7 +2,6 @@ import {createSlice, createAsyncThunk, PayloadAction} from "@reduxjs/toolkit";
 
 import {
     getAuth,
-    onAuthStateChanged,
     signInWithPopup,
     GoogleAuthProvider,
     signInWithEmailAndPassword
@@ -18,10 +17,6 @@ const app = initializeApp({
     messagingSenderId: process.env.REACT_APP_FB_SENDER,
     appId: process.env.REACT_APP_FB_APP,
 });
-
-console.log(app.name);
-
-// import {auth, provider} from "../../utils/services/firebase";
 
 export const provider = new GoogleAuthProvider();
 export const auth = getAuth();
@@ -45,7 +40,7 @@ const initialState: IAuthState = {
     avatar: null,
     isLoggedIn: false,
     isEmailConfirmed: false,
-    isLoading: false,
+    isLoading: true,
     error: null,
 };
 
@@ -98,8 +93,11 @@ export const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        setUser: (state, action) => {
-
+        setUser: (state, action: PayloadAction<IAuthState>) => {
+            return action.payload;
+        },
+        setLoading: (state, action: PayloadAction<boolean>) => {
+            state.isLoading = action.payload;
         },
     },
     extraReducers: {
@@ -118,6 +116,8 @@ export const authSlice = createSlice({
             state.error = action.payload;
             state.isLoading = false;
         },
-        [logout.fulfilled.type]: () => initialState
+        [logout.fulfilled.type]: () => ({...initialState,  isLoading: false})
     }
-})
+});
+
+export const {setUser, setLoading} = authSlice.actions;

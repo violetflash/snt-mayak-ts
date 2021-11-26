@@ -1,6 +1,6 @@
 import React from 'react';
 import 'react-loading-skeleton/dist/skeleton.css';
-import {Box, Center, Flex, Skeleton} from "@chakra-ui/react";
+import {Box, Center, Flex, Skeleton, SkeletonCircle, SkeletonText} from "@chakra-ui/react";
 
 type propsType = {
     type: string
@@ -48,6 +48,15 @@ export const Skeletons = ({type}: propsType) => {
                 </Flex>
             </>
 
+        )
+    }
+
+    if (type === 'header-user') {
+        return (
+            <Flex align="center">
+                <Skeleton width="80px" height="20px"/>
+                <Skeleton ml="20px" rounded="md" width="65px" height="65px"/>
+            </Flex>
         )
     }
 

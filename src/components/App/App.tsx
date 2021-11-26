@@ -11,7 +11,9 @@ import { useAuth } from "../../utils/services/firebase";
 
 export const App = () => {
     const user = useAuth();
-    console.log(user);
+
+
+
     return (
         <ChakraProvider theme={theme}>
             <AppRoutes/>

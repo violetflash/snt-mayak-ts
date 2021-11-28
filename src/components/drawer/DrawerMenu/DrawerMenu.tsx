@@ -16,6 +16,7 @@ import { NavMobile } from '../../Nav/NavMobile';
 import {LogoSvg} from "../../Logo/LogoSVG";
 import { useTypedSelector } from '../../../redux';
 import {Link} from "react-router-dom";
+import {LoginButton} from "../../ui";
 
 
 
@@ -27,8 +28,7 @@ export const DrawerMenu = () => {
 
     const headerContent = isLoggedIn ?
         <DrawerUser onClose={onClose}/> :
-        <Button as={Link} to="/login" onClick={onClose}>Вход</Button>;
-
+        <LoginButton onClick={onClose}/>
     return (
         <>
             {/*<Burger isOpen={isOpen} onClose={onClose} onOpen={onOpen}/>*/}

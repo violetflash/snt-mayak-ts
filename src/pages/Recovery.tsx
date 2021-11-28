@@ -1,6 +1,5 @@
 import React from 'react';
-import {PageContainer, ReturnButton, SectionTitle} from "../components/ui";
-import {RecoveryForm} from "../components";
+import {PageContainer, ReturnButton, SectionTitle, RecoveryForm} from "../components/ui";
 
 export const Recovery = () => {
     return (

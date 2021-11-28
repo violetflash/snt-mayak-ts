@@ -1,6 +1,6 @@
 import React from 'react';
 import {PageContainer, SectionTitle, TabsLayout} from "../components/ui";
-import {LoginForm, RegisterForm} from "../components";
+import {LoginForm, RegisterForm} from "../components/ui";
 import {useNavigate} from 'react-router-dom';
 import {useAuth} from "../utils/services/firebase";
 import { useTypedSelector } from '../redux';

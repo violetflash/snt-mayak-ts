@@ -5,5 +5,4 @@ export * from './AlertPopup/AlertPopup';
 export * from './Logout/Logout';
 export * from './NoData/NoData';
 export * from './RequireAuth/RequireAuth';
-export * from './forms';
 

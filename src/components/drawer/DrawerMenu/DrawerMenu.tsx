@@ -25,7 +25,9 @@ export const DrawerMenu = () => {
 
     const { isLoggedIn } = useTypedSelector(state => state.auth);
 
-    const headerContent = isLoggedIn ? <DrawerUser onClose={onClose}/> : <Button as={Link} to="/login">Вход</Button>;
+    const headerContent = isLoggedIn ?
+        <DrawerUser onClose={onClose}/> :
+        <Button as={Link} to="/login" onClick={onClose}>Вход</Button>;
 
     return (
         <>

@@ -18,7 +18,7 @@ export const LoginButton = () => {
         dispatch(login());
         dispatch(loginWithGoogle());
         // перенаправление на сохраненный маршрут при авторизации
-        navigate(from, { replace: true });
+        // navigate(from, { replace: true });
     };
 
     return (

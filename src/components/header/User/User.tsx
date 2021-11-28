@@ -1,10 +1,10 @@
 import React from 'react';
-import {Flex, WrapItem, Box} from "@chakra-ui/react"
+import {Flex, WrapItem, Box, Button} from "@chakra-ui/react"
 import { UserMenu } from '../UserMenu/UserMenu';
 
-import { LoginButton } from '../../LoginButton/LoginButton';
 import {UserName} from "../../ui/UserName/UserName";
 import { useTypedSelector } from '../../../redux';
+import {Link} from "react-router-dom";
 
 export const User = () => {
     const { isLoggedIn } = useTypedSelector(state => state.auth);
@@ -20,5 +20,5 @@ export const User = () => {
         </WrapItem>
     ;
 
-    return isLoggedIn ? loggedUser : <LoginButton/>;
+    return isLoggedIn ? loggedUser : <Button as={Link} to="/login">Вход</Button>;
 };

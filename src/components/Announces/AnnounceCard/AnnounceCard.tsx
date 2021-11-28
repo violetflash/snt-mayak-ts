@@ -98,6 +98,20 @@ export const AnnounceCard = ({ id, date, time, title, desc, index, activeAnnounc
                 initial={isLargerThan992 ? "initial" : "responsiveInitial"}
                 animate={isLargerThan992 ? "enter" : "responsiveEnter"}
             >
+                <Heading
+                    fontSize={{ base: "20px", md: "24px", lg: "28px" }}
+                    width="100%"
+                    textAlign={{lg: "left", md: "center", base: "center"}}
+                    fontStyle="italic"
+                    fontFamily="Roboto"
+                >
+                    {title}
+                    {/*<TitleDecoration*/}
+                    {/*    initial={{y: 100, opacity: 0}}*/}
+                    {/*    animate={{y: 0, opacity: 1}}*/}
+                    {/*    transition={{duration: 0.15, delay: 0.3}}*/}
+                    {/*/>*/}
+                </Heading>
                 <Badge
                     as="i"
                     p="2px 15px"
@@ -108,18 +122,6 @@ export const AnnounceCard = ({ id, date, time, title, desc, index, activeAnnounc
                 >
                     {date} - {time}
                 </Badge>
-                <Heading
-                    fontSize={{ base: "28px", md: "34px", lg: "40px" }}
-                    width="100%"
-                    textAlign={{lg: "left", md: "center", base: "center"}}
-                >
-                    {title}
-                    {/*<TitleDecoration*/}
-                    {/*    initial={{y: 100, opacity: 0}}*/}
-                    {/*    animate={{y: 0, opacity: 1}}*/}
-                    {/*    transition={{duration: 0.15, delay: 0.3}}*/}
-                    {/*/>*/}
-                </Heading>
                 {/*<AnimatedText text={title}/>*/}
             </MotionVStack>
             <MotionBox

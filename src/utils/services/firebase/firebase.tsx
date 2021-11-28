@@ -1,14 +1,14 @@
 import {
     getAuth,
     onAuthStateChanged,
-    signInWithPopup,
+    // signInWithPopup,
     GoogleAuthProvider,
-    signInWithEmailAndPassword
+    // signInWithEmailAndPassword
 } from "firebase/auth";
 
 
 import {useEffect} from "react";
-import {useAppDispatch, setUser, IAuthState, setLoading} from "../../../redux";
+import {useAppDispatch, setUser, setLoading} from "../../../redux";
 
 export const provider = new GoogleAuthProvider();
 export const auth = getAuth();

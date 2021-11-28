@@ -5,7 +5,7 @@ import {ColorModeSwitcher} from "../ColorModeSwitcher";
 import {User} from "../User/User";
 import {Contacts} from "../Contacts/Contacts";
 import { DrawerMenu } from "../../drawer";
-import {PageContainer, Skeletons} from "../../ui";
+import {HeaderUserSkeleton, PageContainer} from "../../ui";
 import {useTypedSelector} from "../../../redux";
 
 export const Header = () => {
@@ -24,7 +24,7 @@ export const Header = () => {
                     {isLargerThan480 &&
                     <Flex align="center" className="flex-wrapper">
                       <ColorModeSwitcher mr="60px" className="ColorSwitcher"/>
-                        {isLoading ? <Skeletons type="header-user"/> : <User/>}
+                        {isLoading ? <HeaderUserSkeleton/> : <User/>}
                     </Flex>
                     }
                     {isLessThan480 &&

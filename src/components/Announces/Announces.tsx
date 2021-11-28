@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 
 import {useFetch} from '../../utils/hooks/useFetch';
 import {AnnounceCard} from "./AnnounceCard/AnnounceCard";
-import {Skeletons} from '../ui';
 import {AnimatePresence} from "framer-motion";
 import {AnnounceControls} from "./AnnounceControls/AnnounceControls";
 import {Center} from "@chakra-ui/react";
 import { NoData } from '../NoData/NoData';
+import {AnnounceSkeleton} from "../ui";
 
 type announceT = {
     date?: string,
@@ -40,7 +40,7 @@ export const Announces = () => {
 
     return (
         <>
-            {loading && <Skeletons type="announce"/>}
+            {loading && <AnnounceSkeleton/>}
             {data &&
             <>
               <AnimatePresence initial={false}>

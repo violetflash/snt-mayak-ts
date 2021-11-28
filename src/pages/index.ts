@@ -7,3 +7,5 @@ export * from './Questions';
 export * from './AnnounceIdPage';
 export * from './NotFound';
 export * from './Admin';
+export * from './LoginPage';
+export * from './Recovery';

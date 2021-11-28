@@ -1,10 +1,10 @@
 import React from 'react';
-import { Box, Text, Flex } from "@chakra-ui/react";
+import {Box, Text, Flex, useColorModeValue} from "@chakra-ui/react";
 
 import {LogoSvg} from "./LogoSVG";
 
 export const Logo = () => {
-
+    const decorBg = useColorModeValue("orange.300", "orange.400");
     return (
 
         <Flex as="figure" align="center" flexDirection="column" className="Logo">
@@ -23,7 +23,7 @@ export const Logo = () => {
                     height: "3px",
                     bottom: "-6px",
                     borderRadius: "0 0 4px 4px",
-                    bg: "gray.500",
+                    bg: decorBg,
                     opacity: "0.6",
                 }}
             >

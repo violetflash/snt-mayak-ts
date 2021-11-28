@@ -7,15 +7,15 @@ import {
     DrawerBody,
     DrawerHeader,
     DrawerFooter,
-    Drawer, Divider, IconButton, Box,
+    Drawer, Divider, IconButton, Box, Button,
 } from '@chakra-ui/react';
 
 import DrawerUser from "../DrawerUser/DrawerUser";
 import { HamburgerIcon } from '@chakra-ui/icons';
-import { LoginButton } from '../../LoginButton/LoginButton';
 import { NavMobile } from '../../Nav/NavMobile';
 import {LogoSvg} from "../../Logo/LogoSVG";
 import { useTypedSelector } from '../../../redux';
+import {Link} from "react-router-dom";
 
 
 
@@ -25,7 +25,7 @@ export const DrawerMenu = () => {
 
     const { isLoggedIn } = useTypedSelector(state => state.auth);
 
-    const headerContent = isLoggedIn ? <DrawerUser onClose={onClose}/> : <LoginButton/>;
+    const headerContent = isLoggedIn ? <DrawerUser onClose={onClose}/> : <Button as={Link} to="/login">Вход</Button>;
 
     return (
         <>

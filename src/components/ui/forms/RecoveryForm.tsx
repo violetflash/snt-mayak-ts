@@ -1,19 +1,23 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Box, Button, FormControl, FormLabel, Input, InputGroup, InputLeftElement} from "@chakra-ui/react";
 import {EmailIcon} from "@chakra-ui/icons";
+import {useLocation} from 'react-router-dom';
 import {AnimatePresence, motion} from "framer-motion";
 
 const MotionBox = motion(Box);
 
 export const RecoveryForm = () => {
+    const {pathname} = useLocation();
+
     return (
         <AnimatePresence>
-            <MotionBox
+            {pathname === "/recovery" && <MotionBox
+                key="recovery"
                 maxW="lg" m="50px auto 0"
                 initial={{opacity: 0, y: 50}}
                 animate={{opacity: 1, y: 0}}
+                exit={{opacity: 0, y: 50}}
                 transition={{duration: 0.5}}
-
             >
                 <form>
                     <FormControl id="email" isRequired mb="15px">
@@ -30,7 +34,7 @@ export const RecoveryForm = () => {
                     </FormControl>
                     <Button>Восстановить</Button>
                 </form>
-            </MotionBox>
+            </MotionBox>}
         </AnimatePresence>
     )
 };

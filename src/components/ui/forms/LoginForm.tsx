@@ -11,23 +11,24 @@ import {
     InputRightElement,
     Link, Text, useDisclosure, VStack
 } from "@chakra-ui/react";
-import {LoginButton} from "../buttons/LoginButton/LoginButton";
 import {EmailIcon, ViewIcon, ViewOffIcon} from "@chakra-ui/icons";
 import { FaKey } from "react-icons/fa"
 import {Link as RouterLink, useNavigate} from "react-router-dom";
 import {GoogleButton} from "../buttons/GoogleButton/GoogleButton";
+import {setLoading, useAppDispatch, useTypedSelector} from "../../../redux";
 
 
 export const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
-    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const dispatch = useAppDispatch();
+    const {isLoading} = useTypedSelector(state => state.auth);
     let timeoutId: ReturnType<typeof setTimeout>;
-
     const handleLogin = () => {
-        setIsLoading(true);
+        dispatch(setLoading(true));
         timeoutId = setTimeout(() => {
-            setIsLoading(false);
+            dispatch(setLoading(false));
+
             clearTimeout(timeoutId);
         }, 1000)
     };

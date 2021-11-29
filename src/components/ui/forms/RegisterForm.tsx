@@ -13,19 +13,21 @@ import {EmailIcon, ViewIcon, ViewOffIcon} from "@chakra-ui/icons";
 import {FaKey, FaUser} from "react-icons/fa";
 import {useNavigate} from 'react-router-dom';
 import {AlertPopup} from "../../AlertPopup/AlertPopup";
+import {setLoading, useAppDispatch, useTypedSelector} from "../../../redux";
 
 export const RegisterForm = () => {
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    const {isLoading} = useTypedSelector(state => state.auth);
     const [showPassword, setShowPassword] = useState<boolean>(false);
-    const [isLoading, setIsLoading] = useState<boolean>(false);
     const {isOpen, onOpen, onClose} = useDisclosure();
     let timeoutId: ReturnType<typeof setTimeout>;
 
     const handleRegister = () => {
-        setIsLoading(true);
+        dispatch(setLoading(true));
         timeoutId = setTimeout(() => {
             onOpen();
-            setIsLoading(false);
+            dispatch(setLoading(false));
             clearTimeout(timeoutId);
         }, 1000)
     };
@@ -37,7 +39,11 @@ export const RegisterForm = () => {
 
     return (
         <form>
-            <FormControl id="email" isRequired mb="15px">
+            <FormControl
+                isDisabled={isLoading}
+                id="email"
+                isRequired
+                mb="15px">
                 <FormLabel>Email:</FormLabel>
                 <InputGroup>
                     <InputLeftElement
@@ -49,7 +55,11 @@ export const RegisterForm = () => {
 
                 {/*<FormHelperText>We'll never share your email.</FormHelperText>*/}
             </FormControl>
-            <FormControl id="password" isRequired mb="15px">
+            <FormControl
+                isDisabled={isLoading}
+                id="password"
+                isRequired mb="15px"
+            >
                 <FormLabel>Пароль:</FormLabel>
                 <InputGroup>
                     <InputLeftElement
@@ -59,6 +69,7 @@ export const RegisterForm = () => {
                     <Input type={showPassword ? 'text' : 'password'} autoComplete="off"/>
                     <InputRightElement>
                         <Button
+                            isDisabled={isLoading}
                             variant={'ghost'}
                             onClick={() =>
                                 setShowPassword((showPassword) => !showPassword)
@@ -69,7 +80,11 @@ export const RegisterForm = () => {
                 </InputGroup>
                 {/*<FormHelperText>We'll never share your email.</FormHelperText>*/}
             </FormControl>
-            <FormControl id="password" isRequired mb="15px">
+            <FormControl
+                isDisabled={isLoading}
+                id="password"
+                isRequired mb="15px"
+            >
                 <FormLabel>Повторите пароль:</FormLabel>
                 <InputGroup>
                     <InputLeftElement
@@ -79,6 +94,7 @@ export const RegisterForm = () => {
                     <Input type={showPassword ? 'text' : 'password'} autoComplete="off"/>
                     <InputRightElement>
                         <Button
+                            isDisabled={isLoading}
                             variant={'ghost'}
                             onClick={() =>
                                 setShowPassword((showPassword) => !showPassword)
@@ -89,7 +105,12 @@ export const RegisterForm = () => {
                 </InputGroup>
                 {/*<FormHelperText>We'll never share your email.</FormHelperText>*/}
             </FormControl>
-            <FormControl id="name" isRequired mb="35px">
+            <FormControl
+                isDisabled={isLoading}
+                id="name"
+                isRequired
+                mb="35px"
+            >
                 <FormLabel>Ваше имя:</FormLabel>
                 <InputGroup>
                     <InputLeftElement

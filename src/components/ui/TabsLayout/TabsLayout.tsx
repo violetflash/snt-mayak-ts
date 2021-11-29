@@ -1,5 +1,6 @@
 import React from 'react';
 import {Tab, TabList, TabPanel, TabPanels, Tabs} from "@chakra-ui/react";
+import {useTypedSelector} from "../../../redux";
 
 interface TabsLayoutProps {
     titles: string[];
@@ -7,6 +8,7 @@ interface TabsLayoutProps {
 }
 
 export const TabsLayout = ({titles, components}: TabsLayoutProps) => {
+    const {isLoading} = useTypedSelector(state => state.auth);
     return (
         <Tabs
             m="0 auto"
@@ -14,7 +16,7 @@ export const TabsLayout = ({titles, components}: TabsLayoutProps) => {
             p="0 0 20px"
         >
             <TabList>
-                {titles.map(title => <Tab key={title}>{title}</Tab>)}
+                {titles.map(title => <Tab isDisabled={isLoading} key={title}>{title}</Tab>)}
             </TabList>
 
             <TabPanels>

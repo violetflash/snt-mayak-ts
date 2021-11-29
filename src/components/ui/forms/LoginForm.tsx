@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {
     Button, Center, Divider, Flex,
     FormControl,
@@ -20,18 +20,18 @@ import {setLoading, useAppDispatch, useTypedSelector} from "../../../redux";
 
 export const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const {isLoading} = useTypedSelector(state => state.auth);
-    let timeoutId: ReturnType<typeof setTimeout>;
-    const handleLogin = () => {
-        dispatch(setLoading(true));
-        timeoutId = setTimeout(() => {
-            dispatch(setLoading(false));
+    // let timeoutId: ReturnType<typeof setTimeout>;
 
+    const handleLogin = useCallback(() => {
+        dispatch(setLoading(true));
+        const timeoutId = setTimeout(() => {
+            dispatch(setLoading(false));
             clearTimeout(timeoutId);
         }, 1000)
-    };
+    }, [dispatch]);
 
     return (
         <form>
@@ -65,6 +65,7 @@ export const LoginForm = () => {
                     <Input type={showPassword ? 'text' : 'password'} autoComplete="off"/>
                     <InputRightElement>
                         <Button
+                            isDisabled={isLoading}
                             variant={'ghost'}
                             onClick={() =>
                                 setShowPassword((showPassword) => !showPassword)

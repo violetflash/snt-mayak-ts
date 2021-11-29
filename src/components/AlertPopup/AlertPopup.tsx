@@ -1,20 +1,21 @@
-import React, { useRef } from 'react';
+import React, {FC, useRef} from 'react';
 import {AlertDialog, AlertDialogBody, AlertDialogCloseButton, AlertDialogContent,
     AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, Button} from '@chakra-ui/react';
 
 type propsType = {
-    text?: string,
-    desc?: string,
-    confirmText?: string,
-    declineText?: string,
+    text?: string;
+    desc?: string;
+    confirmText?: string;
+    declineText?: string;
     scheme?: string;
-    isOpen: boolean,
-    onClose: React.MouseEventHandler<Element, MouseEvent>,
-    confirmFunc: Function
+    isOpen: boolean;
+    onClose: () => void;
+    confirmFunc: () => void;
+    children?: React.ReactNode;
 }
 
-export const AlertPopup = (
-    { text, isOpen, onClose, confirmFunc, desc, scheme, declineText, confirmText} : propsType
+export const AlertPopup:FC<propsType> = (
+    { children, text, isOpen, onClose, confirmFunc, desc, scheme, declineText, confirmText}
 ) => {
     const cancelRef = useRef(null);
 
@@ -38,6 +39,7 @@ export const AlertPopup = (
                 <AlertDialogCloseButton />
                 <AlertDialogBody>
                     {desc}
+                    {children}
                 </AlertDialogBody>
                 <AlertDialogFooter>
                     {declineText && <Button ref={cancelRef} onClick={onClose}>

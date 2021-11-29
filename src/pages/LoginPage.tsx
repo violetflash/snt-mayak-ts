@@ -13,9 +13,8 @@ export const LoginPage = () => {
         navigate("/");
     }
 
-
     return (
-        <PageContainer>
+        <PageContainer p="0 0 60px">
             <SectionTitle text="Вход на сайт"/>
             <TabsLayout titles={["Войти", "Зарегистрироваться"]} components={[<LoginForm/>, <RegisterForm/>]}/>
         </PageContainer>

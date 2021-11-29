@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {
     Button, Center,
     FormControl,
     FormLabel,
     Icon,
+    Text,
     Input,
     InputGroup,
     InputLeftElement,
@@ -21,16 +22,16 @@ export const RegisterForm = () => {
     const {isLoading} = useTypedSelector(state => state.auth);
     const [showPassword, setShowPassword] = useState<boolean>(false);
     const {isOpen, onOpen, onClose} = useDisclosure();
-    let timeoutId: ReturnType<typeof setTimeout>;
+    // let timeoutId: ReturnType<typeof setTimeout>;
 
-    const handleRegister = () => {
+    const handleRegister = useCallback(() => {
         dispatch(setLoading(true));
-        timeoutId = setTimeout(() => {
+        const timeoutId = setTimeout(() => {
             onOpen();
             dispatch(setLoading(false));
             clearTimeout(timeoutId);
         }, 1000)
-    };
+    }, [dispatch, onOpen]);
 
     const handleClose = () => {
         onClose();
@@ -132,13 +133,16 @@ export const RegisterForm = () => {
                 </Button>
             </Center>
             <AlertPopup
-                desc="Регистрация завершена успешно. Выполнен вход на сайт."
+                // desc="Регистрация завершена успешно. Выполнен вход на сайт."
                 isOpen={isOpen}
                 onClose={handleClose}
                 scheme="green"
                 confirmFunc={handleClose}
                 confirmText="Ок"
-            />
+            >
+                <Text>Регистрация завершена успешно.</Text>
+                <Text>Выполнен вход на сайт.</Text>
+            </AlertPopup>
         </form>
     )
 };

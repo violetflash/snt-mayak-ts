@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {
     Box,
     Button, Center,
@@ -21,21 +21,21 @@ export const RecoveryForm = () => {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const {isOpen, onOpen, onClose} = useDisclosure();
-    let timeoutId: ReturnType<typeof setTimeout>;
+    // let timeoutId: ReturnType<typeof setTimeout>;
 
-    const handleRecovery = () => {
+    const handleRecovery = useCallback(() => {
         setIsLoading(true);
-        timeoutId = setTimeout(() => {
+        const timeoutId = setTimeout(() => {
             onOpen();
             setIsLoading(false);
             clearTimeout(timeoutId);
         }, 1000)
-    };
+    }, [onOpen]);
 
-    const handleClose = () => {
+    const handleClose = useCallback(() => {
         onClose();
         navigate("/login");
-    };
+    }, [navigate, onClose]);
 
     // useEffect(() => {
     //
@@ -56,7 +56,7 @@ export const RecoveryForm = () => {
                     Для восстановления доступа к аккаунту введите Email для получения ссылки с инструкцией.
                 </Text>
                 <form>
-                    <FormControl id="email" isRequired mb="15px">
+                    <FormControl id="email" isRequired mb="15px" isDisabled={isLoading}>
                         <FormLabel>Email:</FormLabel>
                         <InputGroup>
                             <InputLeftElement

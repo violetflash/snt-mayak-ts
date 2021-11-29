@@ -16,10 +16,12 @@ export const AnnounceControls = ({ num, activeAnnounce, setActiveAnnounce } : pr
             <Button
                 key={el}
                 variant="outline"
+                w="40px"
+                h="40px"
                 transition="all 0.2s"
                 _hover={{bg: "orange.100", color: "black"}}
                 _active={{ bg: "orange.100"}}
-                bg={activeAnnounce === i ? "orange.200" : "transparent"}
+                bg={activeAnnounce === i ? "orange.100" : "transparent"}
                 borderColor={activeAnnounce === i ? "orange.200" : "inherit"}
                 color={activeAnnounce === i ? "black" : "inherit"}
                 onClick={() => buttonHandler(i)}

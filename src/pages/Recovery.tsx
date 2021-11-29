@@ -3,7 +3,7 @@ import {PageContainer, ReturnButton, SectionTitle, RecoveryForm} from "../compon
 
 export const Recovery = () => {
     return (
-        <PageContainer>
+        <PageContainer p="0 0 100px">
             <SectionTitle text="Восстановление пароля"/>
             <ReturnButton/>
             <RecoveryForm/>

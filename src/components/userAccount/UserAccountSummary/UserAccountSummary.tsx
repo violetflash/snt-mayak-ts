@@ -10,7 +10,7 @@ type propsType = {
 
 export const UserAccountSummary = (props : propsType) => {
     const {isEmailConfirmed} = useTypedSelector(state => state.auth);
-    // const isEmailConfirmed = false;
+    // const isEmail    Confirmed = false;
     return (
         <VStack
             // direction={{lg: "column", md: "column", sm: "row"}}

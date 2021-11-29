@@ -21,7 +21,7 @@ export const Nav = () => {
     const { colorMode } = useColorMode();
     const { pathname } = useLocation();
     const linkBg = colorMode === "light" ? "white" : "gray.800";
-    const linkColor = colorMode === "light" ? "orange.700" : "yellow.500";
+    const linkColor = colorMode === "light" ? "yellow.700" : "yellow.400";
 
     const navLinks = navData.map(link => {
         return (

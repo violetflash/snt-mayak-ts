@@ -43,6 +43,7 @@ export const GoogleButton = () => {
             onClick={loginHandle}
             fontWeight="normal"
             color="black"
+            _hover={{bg: "blue.100"}}
         >
             Войти, используя Google
         </Button>

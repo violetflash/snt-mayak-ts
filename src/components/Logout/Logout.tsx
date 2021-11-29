@@ -31,7 +31,15 @@ export const Logout = () => {
             >
                 Выйти
             </Button>
-            <AlertPopup text="Выйти из аккаунта?" isOpen={isOpen} onClose={onClose} confirmFunc={handleLogout}/>
+            <AlertPopup
+                text="Выйти из аккаунта?"
+                isOpen={isOpen}
+                onClose={onClose}
+                scheme="red"
+                confirmFunc={handleLogout}
+                confirmText="Да"
+                declineText="Нет"
+            />
         </>
     )
 };

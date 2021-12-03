@@ -13,7 +13,6 @@ export const App = () => {
     const user = useAuth();
 
 
-
     return (
         <ChakraProvider theme={theme}>
             <AppRoutes/>

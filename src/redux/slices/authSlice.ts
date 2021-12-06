@@ -53,7 +53,7 @@ export const loginWithGoogle = createAsyncThunk<User>(
         try {
             const response = await signInWithPopup(auth, provider);
             return response.user;
-        } catch (error: any) {
+        } catch (error) {
             return thunkAPI.rejectWithValue({ error: error.message })
         }
     }
@@ -64,7 +64,7 @@ export const logout = createAsyncThunk(
     async (_, thunkAPI) => {
         try {
             await auth.signOut();
-        }catch(error: any) {
+        }catch(error) {
             return thunkAPI.rejectWithValue({ error: error.message });
         }
     }
@@ -76,7 +76,7 @@ export const loginWithEmailAndPassword = createAsyncThunk(
         try {
             const response = await signInWithEmailAndPassword(auth, loginData.email, loginData.password);
             return response.user;
-        } catch (error: any) {
+        } catch (error) {
             return thunkAPI.rejectWithValue({error: error.message })
         }
     }
@@ -87,7 +87,7 @@ export const createAccount = createAsyncThunk(
     async (userData: IUserCreation, thunkAPI) => {
         try {
             const response = await createUserWithEmailAndPassword(auth, userData.email, userData.password);
-            updateProfile(response.user, {
+            await updateProfile(response.user, {
                 displayName: userData.displayName
             }).then(() => {
                 console.log('Имя пользователя обновлено!')
@@ -95,7 +95,7 @@ export const createAccount = createAsyncThunk(
                 console.log('Ошибка обновления имени пользователя')
             });
             return response.user;
-        } catch (e: any) {
+        } catch (e) {
             return thunkAPI.rejectWithValue({error: e.message})
         }
     }
@@ -105,9 +105,10 @@ export const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        // setUser: (state, action: PayloadAction<IAuthState>) => {
-        //     return action.payload;
-        // },
+        setUser: (state, action: PayloadAction<User>) => {
+            state.user = action.payload;
+            state.isLoggedIn = true;
+        },
         setLoading: (state, action: PayloadAction<boolean>) => {
             state.isLoading = action.payload;
         },
@@ -140,8 +141,21 @@ export const authSlice = createSlice({
         [loginWithEmailAndPassword.rejected.type]: (state, action: PayloadAction<string>) => {
             state.error = action.payload;
             state.isLoading = false;
+        },
+
+        [createAccount.pending.type]: (state) => {
+            state.isLoading = true;
+        } ,
+        [createAccount.fulfilled.type]: (state, action: PayloadAction<User>) => {
+            state.user = action.payload;
+            state.isLoggedIn = true;
+            state.isLoading = false;
+        },
+        [createAccount.rejected.type]: (state, action: PayloadAction<string>) => {
+            state.error = action.payload;
+            state.isLoading = false;
         }
     }
 });
 
-export const {setLoading} = authSlice.actions;
+export const {setUser, setLoading} = authSlice.actions;

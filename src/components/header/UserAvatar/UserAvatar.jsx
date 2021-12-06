@@ -3,7 +3,7 @@ import { Avatar } from "@chakra-ui/react";
 import { useTypedSelector } from "../../../redux";
 
 export const UserAvatar = (props) => {
-  const {displayName, avatar} = useTypedSelector(state => state.auth);
+  const {displayName, photoURL} = useTypedSelector(state => state.auth.user);
   return (
     <Avatar
       name={displayName}
@@ -11,7 +11,7 @@ export const UserAvatar = (props) => {
       ml="15px"
       boxSize="60px"
       objectFit="cover"
-      src={avatar}
+      src={photoURL}
       {...props}
     />
   )

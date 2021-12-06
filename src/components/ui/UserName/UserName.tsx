@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Text } from "@chakra-ui/react";
 import {getFirstWord} from "../../../utils/constants";
 import {useTypedSelector} from "../../../redux";
@@ -10,7 +10,11 @@ type propsType = {
 }
 
 export const UserName = ({ first, i, p } : propsType) => {
-    const { displayName } = useTypedSelector(state => state.auth);
+    const { user: {displayName}, isLoading } = useTypedSelector(state => state.auth);
+
+    console.log(displayName);
+    if (!displayName) return null;
+
     return (
         <Text
             fontSize="md"

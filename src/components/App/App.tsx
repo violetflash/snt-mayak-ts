@@ -7,10 +7,10 @@ import "@fontsource/literata/700.css";
 import { theme } from "../../theme";
 import {AppRoutes} from "../AppRoutes/AppRoutes";
 
-import { useAuth } from "../../utils/services/firebase";
+// import { useAuth } from "../../utils/services/firebase";
 
 export const App = () => {
-    const user = useAuth();
+    // const user = useAuth();
 
 
     return (

@@ -4,7 +4,10 @@ import {
     getAuth,
     signInWithPopup,
     GoogleAuthProvider,
-    signInWithEmailAndPassword
+    signInWithEmailAndPassword,
+    User,
+    createUserWithEmailAndPassword,
+    updateProfile
 } from "firebase/auth";
 
 import { initializeApp } from "firebase/app";
@@ -21,26 +24,17 @@ const app = initializeApp({
 export const provider = new GoogleAuthProvider();
 export const auth = getAuth();
 
-export interface IAuthUserData {
-    displayName: string | null;
-    email: string | null;
-    avatar: string | null;
-}
-
-export interface IAuthState  extends IAuthUserData {
+export interface IAuth {
+    user: User;
     isLoggedIn: boolean;
-    isEmailConfirmed: boolean;
-    isLoading?: boolean;
+    isLoading: boolean;
     error: string | null;
 }
 
-const initialState: IAuthState = {
-    displayName: null,
-    email: null,
-    avatar: null,
+const initialState: IAuth = {
+    user: {} as User,
     isLoggedIn: false,
-    isEmailConfirmed: false,
-    isLoading: true,
+    isLoading: false,
     error: null,
 };
 
@@ -49,17 +43,16 @@ export interface IUserLoginData {
     password: string;
 }
 
+export interface IUserCreation extends IUserLoginData {
+    displayName: string;
+}
 
-
-export const loginWithGoogle = createAsyncThunk<IAuthUserData>(
-    'loginWithGoogle',
+export const loginWithGoogle = createAsyncThunk<User>(
+    'auth/loginWithGoogle',
     async (_, thunkAPI) => {
         try {
             const response = await signInWithPopup(auth, provider);
-            const displayName = response.user?.displayName;
-            const email = response.user?.email;
-            const avatar = response.user?.photoURL;
-            return { displayName, email, avatar };
+            return response.user;
         } catch (error: any) {
             return thunkAPI.rejectWithValue({ error: error.message })
         }
@@ -67,7 +60,7 @@ export const loginWithGoogle = createAsyncThunk<IAuthUserData>(
 );
 
 export const logout = createAsyncThunk(
-    'logout',
+    'auth/logout',
     async (_, thunkAPI) => {
         try {
             await auth.signOut();
@@ -77,25 +70,44 @@ export const logout = createAsyncThunk(
     }
 );
 
-export const authLogin = createAsyncThunk(
-    'login',
-    async (formData: IUserLoginData, thunkAPI) => {
+export const loginWithEmailAndPassword = createAsyncThunk(
+    'auth/loginWithEmailAndPassword',
+    async (loginData: IUserLoginData, thunkAPI) => {
         try {
-            const response = await signInWithEmailAndPassword(auth, formData.email, formData.password);
-            console.log(response);
+            const response = await signInWithEmailAndPassword(auth, loginData.email, loginData.password);
+            return response.user;
         } catch (error: any) {
             return thunkAPI.rejectWithValue({error: error.message })
         }
     }
 );
 
+export const createAccount = createAsyncThunk(
+    'auth/createAccount',
+    async (userData: IUserCreation, thunkAPI) => {
+        try {
+            const response = await createUserWithEmailAndPassword(auth, userData.email, userData.password);
+            updateProfile(response.user, {
+                displayName: userData.displayName
+            }).then(() => {
+                console.log('Имя пользователя обновлено!')
+            }).catch((error) => {
+                console.log('Ошибка обновления имени пользователя')
+            });
+            return response.user;
+        } catch (e: any) {
+            return thunkAPI.rejectWithValue({error: e.message})
+        }
+    }
+)
+
 export const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        setUser: (state, action: PayloadAction<IAuthState>) => {
-            return action.payload;
-        },
+        // setUser: (state, action: PayloadAction<IAuthState>) => {
+        //     return action.payload;
+        // },
         setLoading: (state, action: PayloadAction<boolean>) => {
             state.isLoading = action.payload;
         },
@@ -105,20 +117,31 @@ export const authSlice = createSlice({
             state.isLoading = true;
             state.error = null;
         },
-        [loginWithGoogle.fulfilled.type]: (state, action: PayloadAction<IAuthUserData>) => {
-            state.displayName = action.payload.displayName;
-            state.email = action.payload.email;
-            state.avatar = action.payload.avatar;
+        [loginWithGoogle.fulfilled.type]: (state, action: PayloadAction<User>) => {
+            state.user = action.payload;
             state.isLoggedIn = true;
-            state.isEmailConfirmed = true;
             state.isLoading = false;
         },
         [loginWithGoogle.rejected.type]: (state, action: PayloadAction<string>) => {
             state.error = action.payload;
             state.isLoading = false;
         },
-        [logout.fulfilled.type]: () => ({...initialState,  isLoading: false})
+
+        [logout.fulfilled.type]: () => ({...initialState,  isLoading: false}),
+
+        [loginWithEmailAndPassword.pending.type]: (state) => {
+            state.isLoading = true;
+        } ,
+        [loginWithEmailAndPassword.fulfilled.type]: (state, action: PayloadAction<User>) => {
+            state.user = action.payload;
+            state.isLoggedIn = true;
+            state.isLoading = false;
+        },
+        [loginWithEmailAndPassword.rejected.type]: (state, action: PayloadAction<string>) => {
+            state.error = action.payload;
+            state.isLoading = false;
+        }
     }
 });
 
-export const {setUser, setLoading} = authSlice.actions;
+export const {setLoading} = authSlice.actions;

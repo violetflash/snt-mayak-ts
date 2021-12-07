@@ -14,8 +14,19 @@ type propsType = {
     children?: React.ReactNode;
 }
 
+//add redux state for this dialog
 export const AlertPopup:FC<propsType> = (
-    { children, text, isOpen, onClose, confirmFunc, desc, scheme, declineText, confirmText}
+    {
+        children,
+        text,
+        isOpen,
+        onClose,
+        confirmFunc,
+        desc,
+        scheme,
+        declineText,
+        confirmText
+    }
 ) => {
     const cancelRef = useRef(null);
 
@@ -30,7 +41,6 @@ export const AlertPopup:FC<propsType> = (
             leastDestructiveRef={cancelRef}
             onClose={onClose}
             isOpen={isOpen}
-            // isCentered
         >
             <AlertDialogOverlay />
 

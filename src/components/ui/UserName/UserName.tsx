@@ -10,9 +10,8 @@ type propsType = {
 }
 
 export const UserName = ({ first, i, p } : propsType) => {
-    const { user: {displayName}, isLoading } = useTypedSelector(state => state.auth);
+    const { user: {displayName} } = useTypedSelector(state => state.auth);
 
-    console.log(displayName);
     if (!displayName) return null;
 
     return (

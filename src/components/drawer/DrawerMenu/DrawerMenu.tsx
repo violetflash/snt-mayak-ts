@@ -7,7 +7,7 @@ import {
     DrawerBody,
     DrawerHeader,
     DrawerFooter,
-    Drawer, Divider, IconButton, Box, Button,
+    Drawer, Divider, IconButton, Box,
 } from '@chakra-ui/react';
 
 import DrawerUser from "../DrawerUser/DrawerUser";
@@ -15,7 +15,6 @@ import { HamburgerIcon } from '@chakra-ui/icons';
 import { NavMobile } from '../../Nav/NavMobile';
 import {LogoSvg} from "../../Logo/LogoSVG";
 import { useTypedSelector } from '../../../redux';
-import {Link} from "react-router-dom";
 import {LoginButton} from "../../ui";
 
 

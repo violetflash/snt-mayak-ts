@@ -12,7 +12,7 @@ export const LoginPage = () => {
         if (isLoggedIn) {
             navigate("/");
         }
-    }, [isLoggedIn])
+    }, [navigate, isLoggedIn])
 
 
 
